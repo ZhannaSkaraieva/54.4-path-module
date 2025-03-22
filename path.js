@@ -24,7 +24,7 @@ const path = require('node:path');
 const joinPath = path.join('folder', 'file.txt');
 console.log(joinPath);
 
-// node.js есть глобальные переменные __direname, __filename
+// node.js есть глобальная переменная __direname,
 const joinPath1 = path.join(__dirname, 'folder', 'file.txt'); //получаем абсолютный путь
 console.log('Пуль к текущей директории: ' + joinPath1);
 
@@ -41,6 +41,25 @@ console.log('Абсолютный путь: ' + resolvePath);
 const resolvePath1 = path.resolve('\folder', 'file.txt');  
 console.log('Абсолютный путь: ' + resolvePath1);
 
-// 3.path.parse(path) — разбор пути на части (парсинг)
+// 3.path.parse(path) — разбор пути на структурные части  (распаршивание)
 const parsePath = path.join(__dirname, 'folder', 'file.txt');//можно убрать __dirname и будет указана только дирректория (папка)
-console.log('Парсинг пути:', path.parse(parsePath));
+console.log('Парсинг пути:', path.parse(parsePath));  
+//path.format(object) — создать путь из объекта
+
+//МЕТОДЫ ПОЗВОЛЯЮЩИЕ ИЗВЛЕКАТЬ ИНФОРМАЦИЮ ИЗ ПУТИ
+
+// 4.path.basename(path, [extension]); — получает имя файла из пути, [extension] - необязательно
+console.log('Имя файла:', path.basename(joinPath1));
+console.log('Имя файла:', path.basename(joinPath1, '.txt'));
+
+// 5.path.extname(path) — получает расширение файла
+console.log('Расширение файла:', path.extname(joinPath1));
+
+// 6.path.dirname(path) — получает родительскую папку файла
+console.log('Родительская папка файла:', path.dirname(joinPath1));
+
+// 7.path.normalize()—  метод который попытается вычислить фактический путь,
+// если он содержит относительные спецификаторы, такие как .или .., или двойные слеши:
+console.log(path.normalize('Исправленный путь:' + '/users/zhannaskaraieva/..//file.txt')); // '/users/test.txt'
+
+
